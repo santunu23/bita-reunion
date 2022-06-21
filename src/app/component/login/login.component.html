@@ -1,0 +1,49 @@
+<div class="container">
+    <ngx-spinner
+    bdColor="rgba(51,51,51,0.8)"
+    size="medium"
+    color="#fff"
+    type="ball-scale-multiple"
+  >
+    <p style="font-size: 20px; color: white">Please Wait...</p>
+  </ngx-spinner>
+      <div class="row justify-content-center">
+        <div class="admin_area">
+            <div class="loginpanel">
+            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <img class="bitaimage" src="assets/icon/bitalogo.jpg" alt="bitalogo">
+              <h2 class="loginpanel">Login panel</h2>
+              <hr class="formhr">
+              <div *ngIf="show" class="alert alert-danger">
+                        Oops!Wrong username or password.
+              </div>
+    
+              <div class="form-group">
+                <label for="uname">User Name:</label>
+                <input type="text" class="form-control" required id="uname" name="uname" [(ngModel)]="uname" #unameCtrl="ngModel" >
+                <div *ngIf="!unameCtrl.valid && unameCtrl.touched">
+                  <div *ngIf="unameCtrl.errors['required']">
+                    <p class="formerror">*This field is important.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password">Your Password:</label>
+                <input type="password" class="form-control" id="password" required name="upass" [(ngModel)]="upass" #upassCtrl="ngModel">
+                <div *ngIf="!upassCtrl.valid && upassCtrl.touched">
+                  <div *ngIf="upassCtrl.errors['required']" class="error">
+                    <p class="formerror">*This field is important.</p>
+                  </div>
+                </div>
+              </div>
+              <button 
+              type="submit" 
+              class="btn btn-lg btn-warning btn-block" 
+              name="submtime" 
+              value="Sign In"
+              [disabled]="!f.valid">Log In</button>
+           </form>
+          </div>
+          </div>
+       </div>
+      </div>  

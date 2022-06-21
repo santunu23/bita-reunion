@@ -1,0 +1,46 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+.formerror{
+    color:red;
+    margin-left:2vh;
+}
+
+.admin_area{
+    margin-top:15vh;
+    margin-left: -15vh;
+    width: 75vh;
+    border-color: green;
+   
+}
+.bitaimage{
+    height: 60px;
+    width: 60px;
+    position: absolute;
+}
+.loginpanel{
+    font-weight: 300;
+    padding-left: 15vh;
+    
+}
+.formhr{
+    color:green;
+
+}
+
+@media (min-width: 992px) and (max-width: 1024px) { 
+    .admin_area{
+        margin-top:25vh;
+        margin-left: -15vh;
+        width: 75vh;
+    }
+}
+@media (min-width: 768px) and (max-width: 900px) { 
+   
+}
+
+@media (min-width: 576px) and (max-width:700px) {  
+
+
+}
+

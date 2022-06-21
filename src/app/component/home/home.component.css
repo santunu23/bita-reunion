@@ -1,0 +1,60 @@
+body{
+    margin:0,auto;
+    padding:0,auto;
+}
+.firstrow{
+    background-color: #87CEFA;
+    color:white;
+}
+.action{
+    background-color: #FAB387;
+    color:white
+}
+.summeryparagraph{
+    font-size: 1.50rem;
+    text-align:center;
+    font-family: 'Anek Latin', sans-serif;
+    margin-bottom: 10px;
+   
+}
+.material-icons{
+    font-size: 60px;
+}
+.summeryparagraphtext{
+    text-align: center;
+    font-size: 30px;
+}
+h2{
+    text-align: center;
+    font-size: 30px;
+    padding-top: 2%;
+    font-family: 'Anek Latin', sans-serif;
+}
+.btn{
+   margin: 1rem;
+}
+h3{
+    font-size: 1.50rem;
+    font-family: 'Anek Latin', sans-serif;
+    text-align: center;
+
+}
+.allentry{
+    margin-top: 5px;
+}
+.card>img{
+    height: 200px;
+    
+}
+.card-title{
+   text-align: center;
+   font-size:larger;
+   font-style: bold;
+   font-weight: 300;
+}
+.card-text{
+    text-align: justify;
+    font-size:larger;
+    font-style: bold;
+    font-weight: 300;
+}

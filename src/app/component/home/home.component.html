@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row firstrow">
+        <div class="col-sm-6 offset-md-3">
+            <h2>At a glance</h2>
+              <h3><span class="material-icons wc">wc</span> Total registred user till date : {{this.totalregistration}}</h3>
+              <div class="summeryparagraph"> <span class="material-icons">man</span><h3 class="summeryparagraphtext">Total Male: {{this.gmale}}</h3>
+               <span class="material-icons">woman</span><h3 class="summeryparagraphtext">Total Female: {{this.gfemale}}</h3></div>
+        </div>
+    </div>
+    <div class="row action">
+        <div class="col-sm-6 offset-md-3">
+            <h2>Action</h2>
+             <button class="btn btn-success" (click)="downloadpdf()">Download all data as PDF file.</button>
+             <button class="btn btn-warning" (click)="downloadxml(user$,'bita-reunion')">Download all as EXCEL file.</button>
+        </div>
+    </div>
+    <div class="row allentry">
+        <div class="col col-md-3 col-sm-3" *ngFor="let item of user$" >
+                  <div class="card" >
+                     <img class="card-img-top" class="content" src="{{item.imgurl}}" alt="Card image cap">
+                     <div class="card-body">
+                       <h5 class="card-title">{{item.fname}}</h5>
+                       <p class="card-text">{{item.mno}}</p>
+                       <p class="card-text">{{item.email}}</p>
+                       <p class="card-text">Registration Date:{{item.registrationdate}} at {{item.registrationtime}} </p>
+                     </div>
+                   </div>
+        </div>
+    </div>
+
+</div>

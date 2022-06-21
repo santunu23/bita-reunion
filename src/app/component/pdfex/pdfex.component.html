@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row allentry">
+        <div class="col-sm-6 offset-md-3" *ngFor="let item of user$">
+            <h2>All Entry</h2>
+                 <div class="card">
+                     <img class="card-img-top" id="content" src="{{item.imgurl}}" alt="Card image cap">
+                     <div class="card-body">
+                       <h5 class="card-title">{{item.fname}}</h5>
+                       <p class="card-text">{{item.mno}}</p>
+                       <p class="card-text">{{item.email}}</p>
+                       <p class="card-text">Registration Date:{{item.registrationdate}} at {{item.registrationtime}} </p>
+                     </div>
+                   </div>
+                  
+        </div>
+    </div>
+    <button class="btn btn-success" (click)="downloadxml(user$,'bita-reunion')">DownloadPDF</button>
+</div>

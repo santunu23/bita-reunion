@@ -1,0 +1,113 @@
+<nav class="navbar navbar-expand-sm navbar-expand-md navbar-lg  bg-success navbar-dark">
+    <a class="navbar-brand" routerLink="#">BITA-ReUnion</a>
+  </nav>
+  <div class="container">
+    <ngx-spinner
+    bdColor="rgba(51,51,51,0.8)"
+    size="medium"
+    color="#fff"
+    type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Please Wait...</p>
+  </ngx-spinner>
+    <div class="row">
+      <div class="col-sm-6 offset-md-3">
+        <div class="jumbotron border-success ">
+          <h1 class="headerfont">Registration Form</h1>
+            <hr class="headerline">
+           <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+           <div class="form-group">
+              <div class="form-group"> 
+                <label for="name">Full Name:</label>
+                <input type="text" class="form-control" required name="fname" id="fname" [(ngModel)]="fname" #fnameCtrl="ngModel">
+                        <small id="fname" class="text-muted">
+                          *Your Full Name.
+                        </small>
+                <div *ngIf="!fnameCtrl.valid && fnameCtrl.touched">
+                  <div *ngIf="fnameCtrl.errors['required']" class="error">
+                    <p class="formerror">*This is important field.</p>
+                  </div>
+                </div>
+              </div>
+                 <div class="form-group" >
+                  <label   for="gtype">Gender:</label>
+                    <select name="gtype" class="form-control" id="gtype" required name="gtype" [(ngModel)]="gtype" #gtypeCtrl="ngModel">
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                          <option value="Others">Others</option>
+                    </select>
+                        <div *ngIf="!gtypeCtrl.valid && gtypeCtrl.touched">
+                          <div *ngIf="gtypeCtrl.errors['required']">
+                            <p class="formerror">*This is important field.</p>
+                          </div>  
+                        </div>
+                </div>
+              <div class="form-group">
+                  <label for="presentaddress">Present address:</label>
+                  <input type="text" id="presentaddress" class="form-control" required name="presentaddress" [(ngModel)]="presentaddress" #presentaddressCtrl="ngModel">
+                          <small id="presentaddress" class="text-muted">
+                            *Your Current Address.
+                          </small>
+                        <div *ngIf="!presentaddressCtrl.valid &&presentaddressCtrl.touched">
+                          <div *ngIf="presentaddressCtrl.errors['required']" class="error">
+                            <p class="formerror">*Please fill up the address field.</p>
+                          </div>
+                        </div>
+                </div>
+                <div class="form-group">
+                  <label for="districtname"> Mobile No:</label>
+                  <input type="text" id="mno" class="form-control" pattern="^1?(\d{11})" required name="mno" [(ngModel)]="mno" #mnoCtrl="ngModel">
+                          <small id="presentaddress" class="text-muted">
+                            *Your Mobile No,total 11 digits need(including 0).
+                           </small>
+                              <div *ngIf="!mnoCtrl.valid && mnoCtrl.touched">
+                                <div *ngIf="mnoCtrl.errors['required']" class="error">
+                                  <p class="formerror">*This is important field.</p>
+                                </div>
+                                <div *ngIf="mnoCtrl.errors['pattern']">
+                                  <p class="formerror">*Mobile number should be 11 digit like 01XXXXXXXXX.</p>
+                                </div>
+                              </div>
+                </div>
+               <div class="form-group">
+                  <label for="emailid">Email address:</label>
+                  <input type="text" id="emailid" class="form-control" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="emailid" [(ngModel)]="emailid" #emailidCtrl="ngModel">
+                  <small id="presentaddress" class="text-muted">
+                    *Input your valid email address.
+                   </small>
+                  <div *ngIf="!emailidCtrl.valid && emailidCtrl.touched">
+                    <div *ngIf="emailidCtrl.errors['required']" class="error">
+                      <p class="formerror">*This is important field.</p>
+                    </div>
+                    <div *ngIf="emailidCtrl.errors['pattern']">
+                      <p class="formerror">*Not a Valid email address.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="upload">Passport size photo-(2 x 2 inches):</label>
+                  <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">                
+                    <input id="upload" type="file"  (change)="upload($event)" class="form-control" name="upload">
+                    <label id="upload-label" for="upload" class="font-weight-light text-muted">Your Photo.</label>
+                      <div class="input-group-append">
+                      <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i>
+                        <small class="text-uppercase font-weight-bold text-muted">Click here</small></label>
+                     </div>
+                  </div>
+                      <div class="image-area mt-4">
+                        <img id="imageResult" src="{{this.img}}" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
+                      </div>
+
+                </div>
+
+            </div>
+              <button 
+                  type="submit" 
+                  class="btn btn-lg btn-success btn-block" 
+                  name="submtime" 
+                  value="Sign In"
+                  [disabled]="!f.valid">Submit</button>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div>

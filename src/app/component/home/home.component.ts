@@ -33,10 +33,6 @@ export class HomeComponent implements OnInit {
     if(!this.cookieservice.get('username')){
       this.router.navigateByUrl('login');
     }else{
-      this.spinner.show();
-      setTimeout(()=>{
-        this.spinner.hide();
-      },5000);
         this.service.getalldata().subscribe(data=>{
           this.user$=data.map(e=>{
             return {
@@ -50,13 +46,12 @@ export class HomeComponent implements OnInit {
               registrationtime: e.payload.doc.data()['createtime']
             }
           });
-        
           this.totalregistration=this.user$.length;
           this.user$.forEach(e=>{
               if(e.gtype==="Male"){
-                 this.gmale++
+                 this.gmale++;
               }else{
-                this.gfemale++
+                this.gfemale++;
               }
           })
         });

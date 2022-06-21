@@ -11,5 +11,7 @@ export class SuccessmessageComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  closedialog(){
+       window.location.reload();
+  }
 }

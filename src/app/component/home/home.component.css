@@ -42,9 +42,11 @@ h3{
 .allentry{
     margin-top: 5px;
 }
+.card{
+    margin-top: 5px;
+}
 .card>img{
     height: 200px;
-    
 }
 .card-title{
    text-align: center;
@@ -57,4 +59,17 @@ h3{
     font-size:larger;
     font-style: bold;
     font-weight: 300;
+}
+
+@media (min-width: 992px) and (max-width: 1024px) { 
+
+}
+@media (min-width: 768px) and (max-width: 900px) { 
+   
+}
+
+@media (min-width: 576px) and (max-width:700px) {  
+.btn{
+    margin-left: 20px;
+}
 }

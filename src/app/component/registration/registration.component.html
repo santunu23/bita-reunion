@@ -31,7 +31,10 @@
                  <div class="form-group" >
                   <label   for="gtype">Gender:</label>
                     <select name="gtype" class="form-control" id="gtype" required name="gtype" [(ngModel)]="gtype" #gtypeCtrl="ngModel">
-                          <option value="Male">Male</option>
+                      <small id="gtype" class="text-muted">
+                        *Your Full Name.
+                      </small>   
+                      <option value="Male">Male</option>
                           <option value="Female">Female</option>
                           <option value="Others">Others</option>
                     </select>

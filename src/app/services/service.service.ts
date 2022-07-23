@@ -38,6 +38,7 @@ export class ServiceService {
               mno:item.mno,
               imgurl:item.img,
               randomid:item.userid,
+              involvedata:item.involvedata.involvementarray,
               createdate:formatAMPM(new Date)[0],
               createtime:formatAMPM(new Date)[1]
            });

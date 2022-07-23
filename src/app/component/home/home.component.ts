@@ -1,12 +1,14 @@
 import { CookieService } from 'ngx-cookie-service';
 import { ServiceService } from './../../services/service.service';
 import { Component, IterableDiffers, OnInit } from '@angular/core';
-import { jsPDF } from "jspdf";
+
 import { Base64 } from 'js-base64';
 import * as fileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { jsPDF } from "jspdf";
+import autoTable from 'jspdf-autotable';
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
 
@@ -43,9 +45,12 @@ export class HomeComponent implements OnInit {
               mno: e.payload.doc.data()['mno'],
               email: e.payload.doc.data()['email'],
               registrationdate: e.payload.doc.data()['createdate'],
-              registrationtime: e.payload.doc.data()['createtime']
+              registrationtime: e.payload.doc.data()['createtime'],
+              involvedata:e.payload.doc.data()['involvedata']
             }
+          
           });
+          console.log(this.user$);
           this.totalregistration=this.user$.length;
           this.user$.forEach(e=>{
               if(e.gtype==="Male"){
@@ -69,27 +74,55 @@ downloadpdf(){
                       doc.text("Email: "+e.email,50,60);
                       doc.text("Gender: "+e.gtype,50,70);
                       doc.text("Registration Date:"+e.registrationdate,50,80);
+                      const head = [['Project', 'Join Date', 'Resign Date']];
+                      // const data = [
+                      //     [1, 'Finland', 7.632, 'Helsinki'],
+                      //     [2, 'Norway', 7.594, 'Oslo'],
+                      //     [3, 'Denmark', 7.555, 'Copenhagen'],
+                      //     [4, 'Iceland', 7.495, 'Reykjavík'],
+                      //     [5, 'Switzerland', 7.487, 'Bern'],
+                      //     [9, 'Sweden', 7.314, 'Stockholm'],
+                      //     [73, 'Belarus', 5.483, 'Minsk'],
+                      // ]
+                      
+                      // const data=e.involvedata.forEach(element=>{
+                      //   console.log(element.start);
+                      //   return element.start
+                      // })
+                      // console.log(data)
+                      function getdate(mydate:any){
+                        const getyear=new Date(mydate).getFullYear();
+                        const getMonth=new Date(mydate).getMonth()+1;
+                        const getDay=new Date(mydate).getDay();
+                        console.log(getDay+"/"+getMonth+"/"+getyear);
+                      }
+                      for(const element of e.involvedata){
+                        autoTable(doc, {
+                          margin:{top:90},
+                          head: head,
+                          body: [
+                              [element.projectname,element.start,element.end]
+                          ],
+                          didDrawCell: (data) => { },
+                      });
+                      }
                       doc.addPage();
+
+                  
+
+
          });
     doc.save("bita-reunion.pdf");
   }else{
     alert('Check your internet connection')
   }
-
-    console.log(this.user$.length);
-
-
-    // doc.addImage();
-   
-   
   }
 
   downloadxml( json: any[],excelFileName: string):void{
-    console.log(this.user$);
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
-  const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
-  const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-  this.saveAsExcelFile(excelBuffer, excelFileName);
+    const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    this.saveAsExcelFile(excelBuffer, excelFileName);
 }
 private saveAsExcelFile(buffer: any, fileName: string): void {
   const data: Blob = new Blob([buffer], {type: EXCEL_TYPE});

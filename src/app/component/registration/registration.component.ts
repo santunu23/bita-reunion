@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import * as $ from 'jquery';
@@ -7,7 +8,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SuccessmessageComponent } from '../successmessage/successmessage.component';
 import { ElementRef } from '@angular/core';
-
+import { YourinvovementComponent } from './yourinvovement/yourinvovement.component';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -26,14 +27,15 @@ export class RegistrationComponent implements OnInit {
   ref:any;
   task:any;
   randomId= Math.random().toString(36).substring(2);
-
+  yourinvolvement:[];
 
   constructor(
     private firebaseservice:ServiceService,
     private asstorage:AngularFireStorage,
     private spinner:NgxSpinnerService,
     private dialog: MatDialog,
-    private _elementRef:ElementRef
+    private cookieservice:CookieService
+
   ) { }
 
   ngOnInit(): void {
@@ -48,6 +50,7 @@ export class RegistrationComponent implements OnInit {
   }
 async onSubmit(form: NgForm){
   this.spinner.show();
+  const getProjectInvovementdata=JSON.parse(this.cookieservice.get('yourinvolvement'));
   if(this.a){
     this.ref = this.asstorage.ref(this.randomId);
     this.task = this.ref.put(this.a).then((res:any)=>{
@@ -62,7 +65,8 @@ async onSubmit(form: NgForm){
             address:form.value.presentaddress,
             mno:form.value.mno,
             img:URL,
-            userid:this.randomId
+            userid:this.randomId,
+            involvedata:getProjectInvovementdata
           }
           this.firebaseservice.submitnewmember(res).then(e=>{
                 if(e){
@@ -87,6 +91,10 @@ async onSubmit(form: NgForm){
   }
 
   }
-
+  yourinvolvementdetails(){
+    this.dialog.open(YourinvovementComponent,{
+      width:'70%',
+    });
+  }
 
 }

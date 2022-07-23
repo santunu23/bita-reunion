@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
@@ -12,6 +13,7 @@ import { environment } from 'src/environments/environment.prod';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatDialogModule} from '@angular/material/dialog';
 import { SuccessmessageComponent } from './component/successmessage/successmessage.component';
 import { HomeComponent } from './component/home/home.component';
@@ -19,6 +21,15 @@ import { LoginComponent } from './component/login/login.component';
 import { LogoutComponent } from './component/logout/logout.component';
 import { PdfexComponent } from './component/pdfex/pdfex.component';
 import {MatIconModule} from '@angular/material/icon';
+import { UpdateFeatureComponent } from './update-feature/update-feature.component';
+import { YourinvovementComponent } from './component/registration/yourinvovement/yourinvovement.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
+import { MatNativeDateModule,DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
+import { DatepickerComponent } from './datepicker/datepicker.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +38,10 @@ import {MatIconModule} from '@angular/material/icon';
     HomeComponent,
     LoginComponent,
     LogoutComponent,
-    PdfexComponent
+    PdfexComponent,
+    UpdateFeatureComponent,
+    YourinvovementComponent,
+    DatepickerComponent
   ],
   imports: [
     BrowserModule,
@@ -35,13 +49,20 @@ import {MatIconModule} from '@angular/material/icon';
     BrowserAnimationsModule,
     NgxSpinnerModule,
     FormsModule,
+    MatDialogModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
 
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
-  providers: [CookieService,{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [CookieService,
+  {provide: LocationStrategy,useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

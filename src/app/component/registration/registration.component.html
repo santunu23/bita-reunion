@@ -32,9 +32,9 @@
                   <label   for="gtype">Gender:</label>
                     <select name="gtype" class="form-control" id="gtype" required name="gtype" [(ngModel)]="gtype" #gtypeCtrl="ngModel">
                       <small id="gtype" class="text-muted">
-                        *Your Full Name.
+                        *Choose your Gender.
                       </small>   
-                      <option value="Male">Male</option>
+                         <option value="Male">Male</option>
                           <option value="Female">Female</option>
                           <option value="Others">Others</option>
                     </select>
@@ -57,9 +57,9 @@
                         </div>
                 </div>
                 <div class="form-group">
-                  <label for="districtname"> Mobile No:</label>
+                  <label for="mno"> Mobile No:</label> 
                   <input type="text" id="mno" class="form-control" minlength="10" maxlength="11"  pattern="^1?(\d{11})" required name="mno" [(ngModel)]="mno" #mnoCtrl="ngModel">
-                          <small id="presentaddress" class="text-muted">
+                          <small id="mno" class="text-muted"> 
                             *Your Mobile No,total 11 digits need(including 0).
                            </small>
                               <div *ngIf="!mnoCtrl.valid && mnoCtrl.touched">
@@ -91,6 +91,13 @@
                       <p class="formerror">*Not a Valid email address.</p>
                     </div>
                   </div>
+                </div>
+                <div class="form-group">
+                  <label for="yourinvolvement">Details About your involvement with BITA:</label>
+                  <input type="button" id="yourinvolvement" class="form-control"   (click)="yourinvolvementdetails()" name="yourinvolvement" [(ngModel)]="yourinvolvement" #yourinvolvementCtrl="ngModel">
+                  <small id="presentaddress" class="text-muted">
+                    *Input your valid data.
+                   </small>
                 </div>
                 <div class="form-group">
                   <label for="upload">Passport size photo-(2 x 2 inches):</label>

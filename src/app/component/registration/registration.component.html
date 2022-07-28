@@ -9,7 +9,136 @@
     type="ball-scale-multiple">
     <p style="font-size: 20px; color: white">Please Wait...</p>
   </ngx-spinner>
-    <div class="row">
+  <div class="row">
+    <div class="col-sm-6 offset-md-3">
+      <div class="">
+        <h1 class="headerfont">Registration Form</h1>
+        <hr class="headerline">
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit">
+             <div class="form-group">
+              <mat-form-field style="width:100%" appearance="outline">
+                <mat-label>Your Full name</mat-label>
+                <input type="text" formControlName="fullname" required minlength="3" autocomplete="off" class="form-control" matInput placeholder="Your Full Name.">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <!-- <mat-hint>Hint</mat-hint> -->
+                <div *ngIf="registrationForm.controls['fullname'].invalid && registrationForm.controls['fullname'].touched" >
+                  <div *ngIf="registrationForm.controls['fullname'].errors['required']">
+                    <p class="formerror"> Name is Required.</p>
+                  </div>
+                  <div *ngIf="registrationForm.controls['fullname'].errors['minlength']">
+                    <p class="formerror">Please input your Full Name.</p>
+                  </div>
+                </div>
+             
+              
+              </mat-form-field>
+             </div>
+             <div class="form-group">
+              <mat-form-field style="width: 100%" appearance="outline">
+                <mat-label>Select Your Gender</mat-label>
+                <mat-select  formControlName="gender">
+                  <mat-option value="Male">Male</mat-option>
+                  <mat-option value="Female">Female</mat-option>
+                  <mat-option value="Other">Other</mat-option>
+                </mat-select>
+                <mat-icon matSuffix>female</mat-icon>
+                <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+                <div *ngIf="registrationForm.controls['gender'].invalid && registrationForm.controls['gender'].touched" >
+                  <div *ngIf="registrationForm.controls['gender'].errors['required']">
+                    <p class="formerror">Please fill up the gender field.</p>
+                  </div>
+              </div>
+              </mat-form-field>
+             </div>
+             <div class="form-group">
+              <mat-form-field style="width:100%" appearance="outline">
+                <mat-label>Permanent Address</mat-label>
+                <input type="text" formControlName="address" required matInput minlength="3" autocomplete="off" class="form-control" matInput placeholder="Your Permanent Address.">
+                <mat-icon matSuffix>home</mat-icon>
+                <!-- <mat-hint>Hint</mat-hint> -->
+                <div *ngIf="registrationForm.controls['address'].invalid && registrationForm.controls['address'].touched" >
+                  <div *ngIf="registrationForm.controls['address'].errors['required']">
+                    <p class="formerror">Please input your address.</p>
+                  </div>
+                  <div *ngIf="registrationForm.controls['address'].errors['minLength']">
+                    <p class="formerror">Please input valid address.</p>
+                  </div>
+              </div>
+              </mat-form-field>
+             </div>
+             <div class="form-group">
+              <mat-form-field style="width:100%" appearance="outline">
+                <mat-label>Mobile No: </mat-label>
+                <input type="text" id="mno" class="form-control" matInput formControlName="mno" minlength="10"  maxlength="11"  pattern="^1?(\d{11})" required name="mno">
+                   <mat-icon matSuffix>phone_in_talk</mat-icon>
+                      <small id="mno" class="text-muted"> 
+                        *Your Mobile No,total 11 digits need(including 0).
+                       </small>
+                       <div *ngIf="registrationForm.controls['mno'].invalid && registrationForm.controls['mno'].touched">
+                        <div *ngIf="registrationForm.controls['mno'].errors['required']">
+                          <p class="formerror">*This is important field.</p>
+                        </div>
+                        <div *ngIf="registrationForm.controls['mno'].errors['pattern']">
+                          <p class="formerror">*Mobile number should be 11 digit like 01XXXXXXXXX.</p>
+                        </div>
+                        <div *ngIf="registrationForm.controls['mno'].errors['minLength']">
+                          <p class="formerror">*Mobile number should be 11 digit.</p>
+                        </div>
+                        <div *ngIf="registrationForm.controls['mno'].errors['maxLength']">
+                          <p class="formerror">*Mobile number should be 11 digit.</p>
+                        </div>
+                      </div>
+              </mat-form-field>
+              </div>
+              <div class="form-group">
+                <mat-form-field style="width:100%" appearance="outline">
+                  <mat-label>Email Address: </mat-label>
+                  <input type="text" id="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" matInput formControlName="email"   required name="email">
+                     <mat-icon matSuffix>mail</mat-icon>
+                        <small id="mno" class="text-muted"> 
+                          *Your valid email address.
+                         </small>
+                         <div *ngIf="registrationForm.controls['email'].invalid && registrationForm.controls['email'].touched">
+                          <div *ngIf="registrationForm.controls['email'].errors['required']">
+                            <p class="formerror">*This is an important field.</p>
+                          </div>
+                          <div *ngIf="registrationForm.controls['mno'].errors['pattern']">
+                            <p class="formerror">*The email address is invalid.</p>
+                          </div>
+                        </div>
+                      </mat-form-field>
+                </div>
+                <div  formGroupName="involvewithBITA" class="text-center border-light p-5">
+                  <div class="form-group">
+                    <div formArrayName="tickets" *ngFor="let t of tickets.controls;let i =index" >
+                      <div class="row" [formGroupName]="i">
+                        <div class="col-md-5">
+                          <input formControlName='name' id="{{'name'+i}}" type="text" class="form-control mb-4"
+                            placeholder="Enter Name" />
+                        </div>
+                        <div class="col-md-5">
+                          <input formControlName='age' id="{{'age' + i}}" type="number" class="form-control mb-4"
+                            placeholder="Enter Age " />
+                        </div>
+                        <div class="col-md-2" *ngIf ="i!=0">
+                          <button class="btn btn-danger" (click)="deleteValue(i)">Delete</button>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                </div>
+
+             <button
+              type="submit"
+              class="btn btn-lg btn-success btn-block"
+              name="submtime"
+              [disabled]="!registrationForm.valid"
+             >Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+    <!-- <div class="row">
       <div class="col-sm-6 offset-md-3">
         <div class="jumbotron border-success ">
           <h1 class="headerfont">Registration Form</h1>
@@ -125,5 +254,5 @@
               </form>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>

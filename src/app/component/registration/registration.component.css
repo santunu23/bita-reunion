@@ -1,12 +1,18 @@
 .headerfont{
     text-align: center;
-    font-weight: 300;
-    font-size: 1.5rem;
+    font-weight: 400;
+    font-size: 2rem;
+    margin-top: 20px;
+    color:#3FA200;
 }
 .jumbotron{
     margin-top: 3%;
     padding-top:3%;
     padding-bottom: 3%;
+}
+.headerline{
+    font-weight: 200;
+    background-color:#3FA200;
 }
 #upload {
     opacity: 0;

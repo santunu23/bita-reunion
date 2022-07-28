@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
           this.user$=data.map(e=>{
             return {
               id:e.payload.doc['id'],
-              fname: e.payload.doc.data()['fname'],
+              fname: e.payload.doc.data()['fullname'],
               gtype: e.payload.doc.data()['gtype'],
               imgurl: e.payload.doc.data()['imgurl'],
               mno: e.payload.doc.data()['mno'],
@@ -90,18 +90,13 @@ downloadpdf(){
                       //   return element.start
                       // })
                       // console.log(data)
-                      function getdate(mydate:any){
-                        const getyear=new Date(mydate).getFullYear();
-                        const getMonth=new Date(mydate).getMonth()+1;
-                        const getDay=new Date(mydate).getDay();
-                        console.log(getDay+"/"+getMonth+"/"+getyear);
-                      }
+                  
                       for(const element of e.involvedata){
                         autoTable(doc, {
                           margin:{top:90},
                           head: head,
                           body: [
-                              [element.projectname,element.start,element.end]
+                              [element.pname,element.jdate,element.rdate]
                           ],
                           didDrawCell: (data) => { },
                       });

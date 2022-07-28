@@ -31,14 +31,14 @@ export class ServiceService {
        return [newdate,strTime]
     }
             return this.db.collection('/bita-reunion').add({
-              fname:item.fname,
+              fullname:item.fullname,
               gtype:item.gtype,
               email:item.email,
               address:item.address,
               mno:item.mno,
               imgurl:item.img,
-              randomid:item.userid,
-              involvedata:item.involvedata.involvementarray,
+              userid:item.userid,
+              involvedata:item.projectinvolvement,
               createdate:formatAMPM(new Date)[0],
               createtime:formatAMPM(new Date)[1]
            });

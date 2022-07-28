@@ -22,13 +22,12 @@ import { LogoutComponent } from './component/logout/logout.component';
 import { PdfexComponent } from './component/pdfex/pdfex.component';
 import {MatIconModule} from '@angular/material/icon';
 import { UpdateFeatureComponent } from './update-feature/update-feature.component';
-import { YourinvovementComponent } from './component/registration/yourinvovement/yourinvovement.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
+import {MatSelectModule} from '@angular/material/select';
 import { MatNativeDateModule,DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
 import { DatepickerComponent } from './datepicker/datepicker.component';
-
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -40,7 +39,6 @@ import { DatepickerComponent } from './datepicker/datepicker.component';
     LogoutComponent,
     PdfexComponent,
     UpdateFeatureComponent,
-    YourinvovementComponent,
     DatepickerComponent
   ],
   imports: [
@@ -57,9 +55,12 @@ import { DatepickerComponent } from './datepicker/datepicker.component';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
 
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatButtonModule,
+
   ],
   providers: [CookieService,
   {provide: LocationStrategy,useClass: HashLocationStrategy}],

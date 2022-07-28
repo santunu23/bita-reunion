@@ -24,7 +24,7 @@ export class PdfexComponent implements OnInit {
       this.user$=data.map(e=>{
         return {
           id:e.payload.doc['id'],
-          fname: e.payload.doc.data()['fname'],
+          fname: e.payload.doc.data()['fullname'],
           gtype: e.payload.doc.data()['gtype'],
           imgurl: e.payload.doc.data()['imgurl'],
           mno: e.payload.doc.data()['mno'],

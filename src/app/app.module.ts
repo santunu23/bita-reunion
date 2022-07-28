@@ -28,7 +28,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatNativeDateModule,DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
 import { DatepickerComponent } from './datepicker/datepicker.component';
 import {MatButtonModule} from '@angular/material/button';
-
+import {MatCardModule} from '@angular/material/card';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,6 +60,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
+    MatCardModule
 
   ],
   providers: [CookieService,
